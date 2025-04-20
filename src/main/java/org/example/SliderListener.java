@@ -10,7 +10,7 @@ public class SliderListener implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider) e.getSource();
         int value = source.getValue();
-        GameData.getInstance().setLevel(value);
-        System.out.println("Slider value: " + GameData.getInstance().getLevel());
+        GameData.getInstance().setDifficultyLevel(value);
+        System.out.println("Slider value: " + GameData.getInstance().getDifficultyLevel());
     }
 }

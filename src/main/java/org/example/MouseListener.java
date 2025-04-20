@@ -10,18 +10,22 @@ public class MouseListener implements java.awt.event.MouseListener {
         GameData gameData = GameData.getInstance();
         if(gameData.isGameStarted()) {
             if(gameData.getRound() == 1) {
-                // This means we are pointing co-ordinates for round 1
-                if(gameData.getRoundOneCoOrdinates().size() < gameData.getLevel()) {
-                    gameData.getRoundOneCoOrdinates().add(new Integer[] { event.getX(), event.getY() });
-                    GameCanvas myCanvas = (GameCanvas) event.getSource();
-                    myCanvas.repaint();
-                    if(gameData.getRoundOneCoOrdinates().size() == gameData.getLevel()) {
-                        JOptionPane.showInternalMessageDialog(null, "Starting game...",
-                                "Input", JOptionPane.INFORMATION_MESSAGE);
+                if(!gameData.isBurstingForGivenRoundStarted()) {
+                    // This means we are pointing co-ordinates for round 1
+                    if(gameData.getRoundOneCoOrdinates().size() < gameData.getDifficultyLevel()) {
+                        gameData.getRoundOneCoOrdinates().add(new Integer[] { event.getX(), event.getY() });
+                        GameCanvas myCanvas = (GameCanvas) event.getSource();
+                        myCanvas.repaint();
+                        if(gameData.getRoundOneCoOrdinates().size() == gameData.getDifficultyLevel()) {
+                            JOptionPane.showInternalMessageDialog(null, "Starting game...",
+                                    "Input", JOptionPane.INFORMATION_MESSAGE);
+                            gameData.setBurstingForGivenRoundStarted(true);
+                            myCanvas.repaintingOnTimer();
+                        }
+                    } else if(gameData.getRoundOneCoOrdinates().size() == gameData.getDifficultyLevel()) {
+                        System.out.println("Bubble Bursting Started...");
+                        gameData.setBurstingForGivenRoundStarted(true);
                     }
-                } else if(gameData.getRoundOneCoOrdinates().size() == gameData.getLevel()) {
-                    System.out.println("Bubble Bursting Started...");
-                    gameData.setBurstingForGivenRoundStarted(true);
                 }
                 // This means we are bursting bubbles
                 else {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameData {
-    private int level = 4;
+    private int difficultyLevel = 4;
     private int round = 0;
     private boolean gameStarted = false;
     private boolean burstingForGivenRoundStarted = false;
@@ -38,12 +38,12 @@ public class GameData {
         return _instance;
     }
 
-    public int getLevel() {
-        return level;
+    public int getDifficultyLevel() {
+        return difficultyLevel;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setDifficultyLevel(int difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
     }
 
     public int getRound() {
