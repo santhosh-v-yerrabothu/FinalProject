@@ -7,6 +7,7 @@ public class GameData {
     private int level = 4;
     private int round = 0;
     private boolean gameStarted = false;
+    private boolean burstingForGivenRoundStarted = false;
     private List<Integer []> roundOneCoOrdinates = new ArrayList<>();
 
     public List<Integer[]> getRoundOneCoOrdinates() {
@@ -51,5 +52,13 @@ public class GameData {
 
     public void setRound(int round) {
         this.round = round;
+    }
+
+    public boolean isBurstingForGivenRoundStarted() {
+        return burstingForGivenRoundStarted;
+    }
+
+    public void setBurstingForGivenRoundStarted(boolean burstingForGivenRoundStarted) {
+        this.burstingForGivenRoundStarted = burstingForGivenRoundStarted;
     }
 }

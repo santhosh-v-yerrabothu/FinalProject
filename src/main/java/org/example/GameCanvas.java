@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class GameCanvas extends Canvas {
 
-    private final int DEFAULT_RADIUS = 20;
+    private final int DEFAULT_RADIUS = 10;
     private boolean isMessageShown = false;
 
     @Override
@@ -13,10 +13,8 @@ public class GameCanvas extends Canvas {
         GameData gameData = GameData.getInstance();
         System.out.println("Loading Canvas");
         if(gameData.getRound() == 0) {
-            System.out.println("Step1");
             return;
         } else if(gameData.getRound() == 1) {
-            System.out.println("Step2");
             if(gameData.getRoundOneCoOrdinates().size() == 0 && !isMessageShown) {
                 JOptionPane.showInternalMessageDialog(null, "Please select "+ gameData.getLevel()+" points on White Canvas",
                         "Input", JOptionPane.INFORMATION_MESSAGE);
@@ -28,6 +26,11 @@ public class GameCanvas extends Canvas {
                 for (Integer[] points : gameData.getRoundOneCoOrdinates()) {
                     graphics.drawOval(points[0] - (DEFAULT_RADIUS / 2),
                             points[1] - (DEFAULT_RADIUS / 2), DEFAULT_RADIUS, DEFAULT_RADIUS);
+                    CircleCanvas c = new CircleCanvas(points[0], points[1], DEFAULT_RADIUS, 50);
+                    c.setVisible(true);
+
+                    //c.startRandomHop();
+
                 }
                 return;
             }

@@ -8,8 +8,4 @@ public class Main {
     Game.initializeGame().setVisible(true);
   }
 
-  // @Test
-  // void addition() {
-  //     assertEquals(2, 1 + 1);
-  // }
 }
