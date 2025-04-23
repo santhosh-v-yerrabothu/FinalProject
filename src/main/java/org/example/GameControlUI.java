@@ -9,7 +9,7 @@ public class GameControlUI {
     private static JPanel gameControlPanel = new JPanel();
 
     static {
-
+        GameData gameData = GameData.getInstance();
         gameControlPanel.setBackground(Color.ORANGE);
         gameControlPanel.setPreferredSize(new Dimension(200, 400)); // 20% of 800
         gameControlPanel.setMaximumSize(new Dimension(200, Integer.MAX_VALUE));
@@ -46,6 +46,10 @@ public class GameControlUI {
         JPanel switchesPanel = new JPanel();
         switchesPanel.setBackground(Color.ORANGE);
         switchesPanel.setLayout(new BoxLayout(switchesPanel, BoxLayout.Y_AXIS));
+        if(gameData.isGameStarted()){
+            JLabel label = new JLabel("Round: " + gameData.getRound());
+            switchesPanel.add(label);
+        }
         switchesPanel.add(buttonsPanel);
         switchesPanel.add(Box.createVerticalStrut(50));
         switchesPanel.add(slider);

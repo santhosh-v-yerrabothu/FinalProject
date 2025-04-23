@@ -1,21 +1,26 @@
 package org.example;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameData {
     private int difficultyLevel = 4;
     private int round = 0;
     private boolean gameStarted = false;
     private boolean burstingForGivenRoundStarted = false;
-    private List<Integer []> roundOneCoOrdinates = new ArrayList<>();
+    private Timer timerForGivenRound;
+    private List<Integer []> mainCoOrdinatesForARound = new ArrayList<>();
+    private Map<Integer, Integer[]> randomCoOrdinatesAssociatedWithMainCoOrdinates = new HashMap<>();
 
-    public List<Integer[]> getRoundOneCoOrdinates() {
-        return roundOneCoOrdinates;
+    public List<Integer[]> getMainCoOrdinatesForARound() {
+        return mainCoOrdinatesForARound;
     }
 
-    public void setRoundOneCoOrdinates(List<Integer[]> roundOneCoOrdinates) {
-        this.roundOneCoOrdinates = roundOneCoOrdinates;
+    public void setMainCoOrdinatesForARound(List<Integer[]> mainCoOrdinatesForARound) {
+        this.mainCoOrdinatesForARound = mainCoOrdinatesForARound;
     }
 
     public boolean isGameStarted() {
@@ -60,5 +65,21 @@ public class GameData {
 
     public void setBurstingForGivenRoundStarted(boolean burstingForGivenRoundStarted) {
         this.burstingForGivenRoundStarted = burstingForGivenRoundStarted;
+    }
+
+    public Timer getTimerForGivenRound() {
+        return timerForGivenRound;
+    }
+
+    public void setTimerForGivenRound(Timer timerForGivenRound) {
+        this.timerForGivenRound = timerForGivenRound;
+    }
+
+    public Map<Integer, Integer[]> getRandomCoOrdinatesAssociatedWithMainCoOrdinates() {
+        return randomCoOrdinatesAssociatedWithMainCoOrdinates;
+    }
+
+    public void setRandomCoOrdinatesAssociatedWithMainCoOrdinates(Map<Integer, Integer[]> randomCoOrdinatesAssociatedWithMainCoOrdinates) {
+        this.randomCoOrdinatesAssociatedWithMainCoOrdinates = randomCoOrdinatesAssociatedWithMainCoOrdinates;
     }
 }

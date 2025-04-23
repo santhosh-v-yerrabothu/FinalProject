@@ -8,7 +8,7 @@ public class Game {
     public static JFrame initializeGame() {
         gameFrame = new JFrame("Bubble Game!!");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameFrame.setSize(800, 400); // width matters here
+        gameFrame.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT); // width matters here
 
         // Main container with horizontal BoxLayout
         JPanel container = new JPanel();
