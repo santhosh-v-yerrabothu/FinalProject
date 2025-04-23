@@ -42,16 +42,18 @@ public class GameCanvas extends Canvas {
                     for(int i=0; i< coords.size(); i++) {
                         Integer[] points = coords.get(i);
                         graphics.drawRect(points[0]-(neighborhoodSize/2), points[1]-(neighborhoodSize/2), neighborhoodSize, neighborhoodSize);
+                        // Drawing static circles for Round 1 (before game starts)
                         if(!gameData.isBurstingForGivenRoundStarted()) {
                             System.out.println("Not using random co-ordinates");
                             graphics.drawOval(points[0] - (DEFAULT_DIAMETER / 2),
                                     points[1] - (DEFAULT_DIAMETER / 2), DEFAULT_DIAMETER, DEFAULT_DIAMETER);
-                        } else {
+                        }
+                        // Drawing bouncing circles (Game started)
+                        else {
                             // Displaying Timer
                             graphics.setFont(new Font("SansSerif", Font.BOLD, 20));
                             graphics.setColor(Color.BLACK);
                             graphics.drawString("Timer: " + gameData.getGameTime(), 600, 20);
-                            // Drawing bouncing circles
                             drawBouncingCircles(points, neighborhoodSize, graphics, i);
                         }
                     }
@@ -86,12 +88,24 @@ public class GameCanvas extends Canvas {
        int timerDelay = gameData.getRound() == 1? (Constants.REFRESH_SCREEN_IN_MICROSECONDS/2) : Constants.REFRESH_SCREEN_IN_MICROSECONDS;
        Timer timer = new Timer(timerDelay, e -> {
             int currentGameTime = gameData.getGameTime();
-            gameData.setGameTime(currentGameTime - (timerDelay/1000));
-            this.repaint();
-        });
+            int newTime = currentGameTime - (timerDelay/1000);
+            if(newTime <= 0) {
+                System.out.println("Time is up!!");
+                gameData.gameCompleted();
+                this.repaint();
+                JOptionPane.showInternalMessageDialog(null, "Game Over!! Time is up!!",
+                        "Error", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                gameData.setGameTime(newTime);
+                this.repaint();
+            }
 
-        gameData.setRefreshTimerForGivenRound(timer);
-        timer.start();
+        });
+        if(!gameData.isGameEnded()) {
+            gameData.setRefreshTimerForGivenRound(timer);
+            timer.start();
+        }
+
     }
 
     private void drawBouncingCircles(Integer[] points, int neighborhoodSize, Graphics graphics, int index) {

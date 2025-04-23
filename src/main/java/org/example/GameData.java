@@ -202,4 +202,18 @@ public class GameData {
             }
         }
     }
+
+    public void gameCompleted() {
+        GameData gameData = GameData.getInstance();
+        gameData.setRound(0);
+        gameData.getRefreshTimerForGivenRound().stop();
+        gameData.setRefreshTimerForGivenRound(null);
+        gameData.setBurstingForGivenRoundStarted(false);
+        gameData.setMainCoOrdinatesForARound(new ArrayList<>());
+        gameData.setGameStarted(false);
+        gameData.setGameEnded(true);
+        gameData.setGameTime(0);
+        gameData.enableAllControls(GameControlUI.getPanel());
+        gameData.setSelectionMessageShown(false);
+    }
 }

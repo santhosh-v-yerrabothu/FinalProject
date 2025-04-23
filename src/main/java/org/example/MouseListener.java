@@ -87,7 +87,7 @@ public class MouseListener implements java.awt.event.MouseListener {
                 currentRoundTimer.stop();
                 if(gameData.getRound() == Constants.LAST_ROUND_NUMBER) {
                     // game is completed successfully
-                    gameCompleted();
+                    gameData.gameCompleted();
                     JOptionPane.showInternalMessageDialog(null, "You have successfully finished the game!!!",
                             "Response", JOptionPane.INFORMATION_MESSAGE);
                     return;
@@ -107,26 +107,11 @@ public class MouseListener implements java.awt.event.MouseListener {
         // we are returning -1 if clicked co-ordinate is not inside any circle
         else {
             System.out.println("Game Over !!!!!!!!!");
-            gameCompleted();
+            gameData.gameCompleted();
             myCanvas.repaint();
             JOptionPane.showInternalMessageDialog(null, "Game Over!! You clicked outside the circle!!",
                     "Error", JOptionPane.INFORMATION_MESSAGE);
-
-
             return;
         }
-    }
-
-    private static void gameCompleted() {
-        GameData gameData = GameData.getInstance();
-        gameData.setRound(0);
-        gameData.setRefreshTimerForGivenRound(null);
-        gameData.setBurstingForGivenRoundStarted(false);
-        gameData.setMainCoOrdinatesForARound(new ArrayList<>());
-        gameData.setGameStarted(false);
-        gameData.setGameEnded(true);
-        gameData.setGameTime(0);
-        gameData.enableAllControls(GameControlUI.getPanel());
-        gameData.setSelectionMessageShown(false);
     }
 }
