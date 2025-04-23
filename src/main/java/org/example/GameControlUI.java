@@ -9,6 +9,10 @@ public class GameControlUI {
     private static JPanel gameControlPanel = new JPanel();
 
     static {
+        loadUIControls();
+    }
+
+    public static void loadUIControls() {
         GameData gameData = GameData.getInstance();
         gameControlPanel.setBackground(Color.ORANGE);
         gameControlPanel.setPreferredSize(new Dimension(200, 400)); // 20% of 800
@@ -30,7 +34,7 @@ public class GameControlUI {
         buttonsPanel.add(restartButton);
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
 
-        JSlider slider = new JSlider(4, 6, 4); // Start at Medium
+        JSlider slider = new JSlider(4, 6, gameData.getDifficultyLevel()); // Start at Medium
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setMajorTickSpacing(1);
@@ -61,7 +65,7 @@ public class GameControlUI {
         return gameControlPanel;
     }
 
-    public void refreshUI() {
-
+    public static void refreshUI() {
+        loadUIControls();
     }
 }

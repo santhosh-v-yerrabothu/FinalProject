@@ -8,9 +8,14 @@ public class SliderListener implements ChangeListener {
 
     private GameData gameData;
     public void stateChanged(ChangeEvent e) {
+        gameData = GameData.getInstance();
+        if(gameData.isGameStarted()) {
+            System.out.println("Game already started. So, ignoring event");
+            return;
+        }
         JSlider source = (JSlider) e.getSource();
         int value = source.getValue();
-        GameData.getInstance().setDifficultyLevel(value);
+        gameData.setDifficultyLevel(value);
         System.out.println("Slider value: " + GameData.getInstance().getDifficultyLevel());
     }
 }
