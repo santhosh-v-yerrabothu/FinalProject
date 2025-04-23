@@ -95,16 +95,15 @@ public class GameCanvas extends Canvas {
                 this.repaint();
                 JOptionPane.showInternalMessageDialog(null, "Game Over!! Time is up!!",
                         "Error", JOptionPane.INFORMATION_MESSAGE);
+                return;
             } else {
                 gameData.setGameTime(newTime);
                 this.repaint();
             }
 
         });
-        if(!gameData.isGameEnded()) {
-            gameData.setRefreshTimerForGivenRound(timer);
-            timer.start();
-        }
+       gameData.setRefreshTimerForGivenRound(timer);
+       timer.start();
 
     }
 
