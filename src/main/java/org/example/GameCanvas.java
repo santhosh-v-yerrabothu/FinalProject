@@ -26,10 +26,12 @@ public class GameCanvas extends Canvas {
         }
         // It means game started
         else if(gameData.isGameStarted()) {
+            System.out.println("Game Started. Setting color");
+            this.setBackground(new Color(34, 139, 34));
             if(gameData.getRound() == 1) {
                 List<Integer[]> coords = gameData.getMainCoOrdinatesForARound();
                 if(coords.size() == 0 && !gameData.isSelectionMessageShown()) {
-                    JOptionPane.showInternalMessageDialog(null, "Please select "+ gameData.getDifficultyLevel()+" points on White Canvas",
+                    JOptionPane.showInternalMessageDialog(null, "Please select "+ gameData.getDifficultyLevel()+" points on Green Playing Field",
                             "Input", JOptionPane.INFORMATION_MESSAGE);
                     gameData.setSelectionMessageShown(true);
                     return;
