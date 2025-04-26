@@ -16,9 +16,22 @@ public class MouseListener implements java.awt.event.MouseListener {
                     // This means we are pointing co-ordinates for round 1
                     if(gameData.getMainCoOrdinatesForARound().size() < gameData.getDifficultyLevel()) {
                         int currentSize = gameData.getMainCoOrdinatesForARound().size();
+                        int xNewCoOrdinate = event.getX();
+                        int yNewCoOrdinate = event.getY();
+                        if(gameData.checkIfNewCoOrdinatesAreInNeighborhoodOfOtherCoOrdinates(xNewCoOrdinate, yNewCoOrdinate,
+                                gameData.getMainCoOrdinatesForARound(), gameData.getRound())) {
+                            JOptionPane.showInternalMessageDialog(null, "You have to select a point farther from existing bubbles!!",
+                                    "Input", JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
+                        if(!gameData.checkIfBubbleNeighborhoodsCanBeFullyFormed(xNewCoOrdinate, yNewCoOrdinate, gameData.getRound())) {
+                            JOptionPane.showInternalMessageDialog(null, "A bubble and it's neighborhood cannot be fully formed with the point you selected" +
+                                    "Please select another point !!",
+                                    "Input", JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
                         gameData.getMainCoOrdinatesForARound().add(currentSize, new Integer[] { event.getX(), event.getY() });
                         System.out.println("Added Circle at index" + currentSize);
-                        //GameCanvas myCanvas = (GameCanvas) event.getSource();
                         myCanvas.repaint();
                         if(gameData.getMainCoOrdinatesForARound().size() == gameData.getDifficultyLevel()) {
                             JOptionPane.showInternalMessageDialog(null, "Starting game...",

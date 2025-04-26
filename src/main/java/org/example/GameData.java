@@ -1,5 +1,6 @@
 package org.example;
 
+
 import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.*;
@@ -176,6 +177,14 @@ public class GameData {
             }
         }
         return false;
+    }
+
+    public boolean checkIfBubbleNeighborhoodsCanBeFullyFormed(int x, int y, int currentRound) {
+        int halfOfNeighborhood = Constants.DEFAULT_NEIGHBORHOOD/2;
+        boolean xValidation = x >= (halfOfNeighborhood/2) && x<= (Constants.GAME_FIELD_WIDTH - halfOfNeighborhood);
+        // we are showing timer and round number at y=20 with height of 20. So, we are accounting for that in y co-ordinate validation
+        boolean yValidation = y >= (halfOfNeighborhood/2 + 40 ) && y<= (Constants.GAME_FIELD_HEIGHT - halfOfNeighborhood);
+        return xValidation && yValidation;
     }
 
 
