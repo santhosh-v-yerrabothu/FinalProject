@@ -85,10 +85,10 @@ public class GameCanvas extends Canvas {
 
     public void repaintingOnTimer() {
        GameData gameData = GameData.getInstance();
-       int timerDelay = gameData.getRound() == 1? (Constants.REFRESH_SCREEN_IN_MICROSECONDS/2) : Constants.REFRESH_SCREEN_IN_MICROSECONDS;
-       Timer timer = new Timer(timerDelay, e -> {
+       int screenRefreshTime = gameData.getRound() == 1? (Constants.REFRESH_SCREEN_IN_MICROSECONDS/2) : Constants.REFRESH_SCREEN_IN_MICROSECONDS;
+       Timer timer = new Timer(screenRefreshTime, e -> {
             int currentGameTime = gameData.getGameTime();
-            int newTime = currentGameTime - (timerDelay/1000);
+            int newTime = currentGameTime - (Constants.TIME_LOSS_PER_SCREEN_REFRESH_IN_SECONDS);
             if(newTime <= 0) {
                 System.out.println("Time is up!!");
                 gameData.gameCompleted();
