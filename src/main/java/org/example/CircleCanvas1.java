@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class CircleCanvas extends JPanel {
+public class CircleCanvas1 extends JPanel {
     private int x, y, radius, neighborhoodSize;
 
 
-    public CircleCanvas(int x, int y, int radius, int neighborhoodSize) {
+    public CircleCanvas1(int x, int y, int radius, int neighborhoodSize) {
         this.x = x;
         this.y = y;
         this.radius =radius;
